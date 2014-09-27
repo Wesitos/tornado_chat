@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <div id="chat_container">
+      {% if current_user %}
+        {% module UserInput(current_user) %}
+      {% else %}
+        <a href="/login">login</a>
+        {% end %}
+        
+        <ol id="chat_list">
+          <li>----------</li>
+          {% for message in message_list %}
+            <li>{% module ChatMessage(message["user"], message["text"]) %}</li>
+            {% end %}
+        </ol>
+    </div>
+  </body>
+</html>
