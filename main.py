@@ -18,14 +18,14 @@ class IndexHandler(BaseHandler):
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            (r"/", IndexHandler),
-            (r"/login", AuthLoginHandler),
-            (r"/websocket", WebSocketChatHandler),
-            (r"/logout", AuthLogoutHandler),
+            (r"/chat", IndexHandler),
+            (r"/chat/login", AuthLoginHandler),
+            (r"/chat/websocket", WebSocketChatHandler),
+            (r"/chat/logout", AuthLogoutHandler),
         ]
         settings = {
             "cookie_secret": options["cookie_secret"],
-            "login_url": r"/login",
+            "login_url": r"/chat/login",
             "xsrf_cookies": True,
             "facebook_api_key": options.facebook_api_key,
             "facebook_secret": options.facebook_secret,
