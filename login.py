@@ -11,8 +11,10 @@ class BaseHandler(tornado.web.RequestHandler):
 class AuthLoginHandler(BaseHandler, FacebookGraphMixin):
   @tornado.gen.coroutine
   def get(self):
-    my_url = (self.request.protocol + "://" + self.request.host + "/login")
-    print my_url
+    my_url = (self.request.protocol + "://" + self.request.host +
+                  "/login?next=" +
+                  tornado.escape.url_escape(self.get_argument("next", "/")))
+    print "my-url = " + my_url
     if self.get_argument("code", False):
       user = yield self.get_authenticated_user(
         redirect_uri=my_url,
