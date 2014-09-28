@@ -6,14 +6,14 @@
       {% if current_user %}
         {% module UserInput(current_user) %}
       {% else %}
-        <a href="login">login</a>
-        {% end %}
-        
+        <a href="/chat/login">login</a>
+      {% end %}
+
         <ol id="chat_list">
           <li>----------</li>
           {% for message in message_list %}
             <li>{% module ChatMessage(message["user"], message["text"]) %}</li>
-            {% end %}
+          {% end %}
         </ol>
     </div>
   </body>
