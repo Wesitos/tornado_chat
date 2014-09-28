@@ -32,6 +32,7 @@ class Application(tornado.web.Application):
             "debug": True,
             "ui_modules": uimodules,
             "static_path":os.path.join(os.path.dirname(__file__), "public"),
+            "static_url_prefix": "/chat/static/",
             "template_path": os.path.join(os.path.dirname(__file__), "templates"),
             "autoescape": None,
         }
