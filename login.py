@@ -13,7 +13,7 @@ class AuthLoginHandler(BaseHandler, FacebookGraphMixin):
   def get(self):
     my_url = (self.request.protocol + "://" + self.request.host +
                   "/chat/login?next=" +
-                  tornado.escape.url_escape(self.get_argument("next", "/")))
+                  tornado.escape.url_escape(self.get_argument("next", "/chat")))
     print "my-url = " + my_url
     if self.get_argument("code", False):
       user = yield self.get_authenticated_user(
