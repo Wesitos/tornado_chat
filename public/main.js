@@ -19,6 +19,7 @@ var create_socket = function create_socket(){
             if(text_input.value)
             {chatSocket.send(JSON.stringify(msg));}
             text_input.value = "";
+            return false;
         }, false);
     }
 
@@ -41,7 +42,7 @@ var create_socket = function create_socket(){
 
     chatSocket.onerror = function(event){
         console.log("WebSocket Error");
-        set_timeout(create_socket, 3000);
+        setTimeout(create_socket, 3000);
     }
 }
 
