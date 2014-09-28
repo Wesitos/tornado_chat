@@ -12,7 +12,7 @@ class AuthLoginHandler(BaseHandler, FacebookGraphMixin):
   @tornado.gen.coroutine
   def get(self):
     my_url = (self.request.protocol + "://" + self.request.host +
-                  "chat/login?next=" +
+                  "/chat/login?next=" +
                   tornado.escape.url_escape(self.get_argument("next", "/")))
     print "my-url = " + my_url
     if self.get_argument("code", False):
