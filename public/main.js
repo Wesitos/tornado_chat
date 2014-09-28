@@ -6,7 +6,7 @@ var chatSocket
 var create_socket = function create_socket(){
     if (chatSocket){chatSocket.close()}
     var websocket_url = "ws://" + window.location.hostname +
-        ":" + window.location.port + "/websocket";
+        ":" + window.location.port + "/chat/websocket";
     chatSocket = new WebSocket(websocket_url);
     chatSocket.onopen = function (event) {
         console.log("WebSocket creado");
