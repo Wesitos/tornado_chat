@@ -12,7 +12,7 @@ class AuthLoginHandler(BaseHandler, FacebookGraphMixin):
   @tornado.gen.coroutine
   def get(self):
     my_url = (self.request.protocol + "://" + self.request.host +
-                  "/login?next=" +
+                  "chat/login?next=" +
                   tornado.escape.url_escape(self.get_argument("next", "/")))
     print "my-url = " + my_url
     if self.get_argument("code", False):
@@ -39,4 +39,4 @@ class AuthLogoutHandler(BaseHandler):
   def get(self):
     self.clear_cookie("fb_user")
     print "Usuario Desautenticado"
-    self.redirect(self.get_argument("next", "/"))
+    self.redirect(self.get_argument("next", "/chat"))
