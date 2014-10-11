@@ -10,7 +10,6 @@
       {% end %}
 
         <ol id="chat_list">
-          <li>----------</li>
           {% for message in message_list %}
             <li>{% module ChatMessage(message["user"], message["text"]) %}</li>
           {% end %}
