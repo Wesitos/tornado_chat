@@ -10,7 +10,7 @@
       {% end %}
 
         <ol id="chat_list">
-          {% for message in message_list %}
+          {% for message in message_list[::-1] %}
             <li>{% module ChatMessage(message["user"], message["text"]) %}</li>
           {% end %}
         </ol>
