@@ -10,6 +10,10 @@ import os.path
 
 define("port", default=8888, help="run on the given port", type=int)
 
+class IndexRedirectHandler(BaseHandler):
+    def get(self):
+        self.redirect("/chat/index.html")
+
 class IndexHandler(BaseHandler):
     def get(self):
         chat_list = WebSocketChatHandler.chat_cache
@@ -18,7 +22,8 @@ class IndexHandler(BaseHandler):
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            (r"/chat", IndexHandler),
+            (r"/chat/?", IndexRedirectHandler),
+            (r"/chat/index.html", IndexHandler),
             (r"/chat/login", AuthLoginHandler),
             (r"/chat/websocket", WebSocketChatHandler),
             (r"/chat/logout", AuthLogoutHandler),
