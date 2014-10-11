@@ -32,7 +32,8 @@ class AuthLoginHandler(BaseHandler, FacebookGraphMixin):
     if not user:
       raise tornado.web.HTTPError(500, "Facebook auth failed")
     print "Usuario Autenticado", user["name"]
-    self.set_secure_cookie("fb_user", tornado.escape.json_encode(user))
+    self.set_secure_cookie("fb_user", tornado.escape.json_encode(user),
+                           path="/chat")
     self.redirect(self.get_argument("next", "/chat"))
 
 class AuthLogoutHandler(BaseHandler):
