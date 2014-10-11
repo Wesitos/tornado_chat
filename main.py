@@ -1,7 +1,7 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpserver
-from tornado.options import define, options
+from tornado.options import define, options, parse_command_line
 from login import BaseHandler, AuthLoginHandler, AuthLogoutHandler
 import secret
 import uimodules
@@ -44,6 +44,7 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
 
 def deploy_server():
+    parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
