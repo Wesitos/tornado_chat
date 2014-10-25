@@ -10,17 +10,13 @@ import os.path
 
 define("port", default=8888, help="run on the given port", type=int)
 
-class IndexRedirectHandler(BaseHandler):
-    def get(self):
-        self.redirect("/chat/index.html")
-
 class IndexHandler(BaseHandler):
     def get(self):
         chat_list = WebSocketChatHandler.chat_cache
         self.render("index.html", message_list=chat_list)
 
 handlers = [
-    (r"/chat/?", IndexRedirectHandler),
+    (r"/chat/?", tornado.web.RedirectHandler, {"url": "/chat/index.html"}),
     (r"/chat/index.html", IndexHandler),
     (r"/chat/login", AuthLoginHandler),
     (r"/chat/websocket", WebSocketChatHandler),
@@ -44,7 +40,7 @@ chat_app = tornado.web.Application(handlers, **settings)
 
 def deploy_server():
     parse_command_line()
-    tornado.httpserver.HTTPServer(chat_app)
+    http_server = tornado.httpserver.HTTPServer(chat_app)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
