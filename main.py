@@ -33,7 +33,7 @@ settings = {
     "static_path":os.path.join(os.path.dirname(__file__), "public"),
     "static_url_prefix": "/chat/static/",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
-    "autoescape": None,
+    "autoescape": "xhtml_escape",
 }
 
 chat_app = tornado.web.Application(handlers, **settings)
